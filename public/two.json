@@ -1,0 +1,90 @@
+[
+  {
+    "id": "campaign_123",
+    "name": "Help Bella Get Surgery",
+    "description": "Bella, a loving 2-year-old Golden Retriever, requires urgent surgery. Her family is facing financial difficulties and needs help to cover the medical expenses. Every donation counts towards giving Bella a chance to lead a healthy life.",
+    "image": "https://atria.peerduck.com/wp-content/uploads/2024/03/eoirjg.png",
+    "maxDonation": 5000,
+    "donatedAmount": 3200,
+    "createdAt": "2024-08-20",
+    "campaign_type": "camping",
+    "email": "contact@bellahelp.com"
+  },
+  {
+    "id": "campaign_124",
+    "name": "Support Max's Rehab",
+    "description": "Max is on his road to recovery and needs your support for his rehabilitation process. His therapy and medications are crucial for him to regain his strength and live a happy life.",
+    "image": "https://atria.peerduck.com/wp-content/uploads/2024/03/ejhrbg.png",
+    "maxDonation": 4000,
+    "donatedAmount": 1500,
+    "createdAt": "2024-08-22",
+    "campaign_type": "camping",
+    "email": "contact@maxrehab.com"
+  },
+  {
+    "id": "campaign_125",
+    "name": "Help Luna Fight Cancer",
+    "description": "Luna, a brave and loving pet, is battling cancer. The medical treatments are expensive, and her family needs help to cover the costs. Your support can make a difference in Luna's fight against cancer.",
+    "image": "https://atria.peerduck.com/wp-content/uploads/2024/03/rofig.png",
+    "maxDonation": 8000,
+    "donatedAmount": 4500,
+    "createdAt": "2024-08-18",
+    "campaign_type": "recommended",
+    "email": "contact@lunahelp.com"
+  },
+  {
+    "id": "campaign_126",
+    "name": "Assist Rocky's Recovery",
+    "description": "Rocky has gone through a tough time and is now in the recovery phase. Your donations will help cover the costs of his rehabilitation and medical care, ensuring Rocky gets back to his playful self.",
+    "image": "https://atria.peerduck.com/wp-content/uploads/2024/03/ekjrng.png",
+    "maxDonation": 3000,
+    "donatedAmount": 2800,
+    "createdAt": "2024-08-24",
+    "campaign_type": "recommended",
+    "email": "contact@rockyrecover.com"
+  },
+  {
+    "id": "campaign_127",
+    "name": "Save Daisy's Life",
+    "description": "Daisy, a sweet and gentle pet, is in need of life-saving treatment. Her family is struggling to afford the medical bills, and they need your help to ensure Daisy gets the care she needs.",
+    "image": "https://atria.peerduck.com/wp-content/uploads/2024/03/kwjefn.png",
+    "maxDonation": 7000,
+    "donatedAmount": 5000,
+    "createdAt": "2024-08-19",
+    "campaign_type": "recommended",
+    "email": "contact@daisysave.com"
+  },
+  {
+    "id": "campaign_128",
+    "name": "Fund Charlie's Surgery",
+    "description": "Charlie needs urgent surgery, and his family is unable to bear the entire cost. Your contribution can help Charlie get the surgery he needs and continue to live a healthy life.",
+    "image": "https://atria.peerduck.com/wp-content/uploads/2024/03/ehrbg.png",
+    "maxDonation": 6000,
+    "donatedAmount": 3500,
+    "createdAt": "2024-08-21",
+    "campaign_type": "recommended",
+    "email": "contact@charliefund.com"
+  },
+  {
+    "id": "campaign_129",
+    "name": "Help Milo Recover",
+    "description": "Milo is on the road to recovery, but the medical expenses are overwhelming. Your donations will help cover the costs of his treatment and ensure that Milo can make a full recovery.",
+    "image": "https://atria.peerduck.com/wp-content/uploads/2024/03/ortij.png",
+    "maxDonation": 5000,
+    "donatedAmount": 3200,
+    "createdAt": "2024-08-17",
+    "campaign_type": "recommended",
+    "email": "contact@milorecover.com"
+  },
+  {
+    "id": "campaign_130",
+    "name": "Assist Buddy's Healing",
+    "description": "Buddy is a brave pet who has been through a lot. He needs your help to cover the costs of his healing process. Your support will ensure Buddy gets the best care possible.",
+    "image": "https://atria.peerduck.com/wp-content/uploads/2024/03/iujr.png",
+    "maxDonation": 9000,
+    "donatedAmount": 6700,
+    "createdAt": "2024-08-23",
+    "campaign_type": "recommended",
+    "email": "contact@buddyassist.com"
+  }
+]
