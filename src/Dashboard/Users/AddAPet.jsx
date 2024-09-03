@@ -36,7 +36,7 @@ const AddAPet = () => {
             date_added:formattedDate,
             pet_image:imageUrl,
             description:data.description,
-            long_escription:data.long_description,
+            long_description:data.long_description,
             adopted: false
             
         }

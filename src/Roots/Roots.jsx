@@ -14,6 +14,10 @@ import Dashboard from "../Dashboard/Dashboard";
 import Users from "../Dashboard/Admin/Users";
 import PrivateAdmin from "./PrivateAdmin";
 import AddAPet from "../Dashboard/Users/AddAPet";
+import MyAddedPeats from "../Dashboard/Users/MyAddedPeats";
+
+import UpdatePet from "../Dashboard/Users/UpdatePet";
+import MydonationCampaing from "../Dashboard/Users/MydonationCampaing";
 
 export const router = createBrowserRouter([
     {
@@ -58,7 +62,19 @@ export const router = createBrowserRouter([
             //user
             {
                 path:'add',
-                element:<AddAPet></AddAPet>
+                element:<Private><AddAPet></AddAPet></Private>
+            },
+            {
+                path:'my/pets',
+                element:<Private><MyAddedPeats></MyAddedPeats></Private>
+            },
+            {
+                path:'adoptRequest',
+                element:<MydonationCampaing></MydonationCampaing>
+            },
+            {
+                path:'update-pet/:id',
+                element:<Private><UpdatePet></UpdatePet></Private>
             },
             //admin
             {

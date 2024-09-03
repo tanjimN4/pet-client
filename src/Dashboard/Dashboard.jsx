@@ -29,8 +29,8 @@ const Dashboard = () => {
                         {
                             isAdmin && <>
                                 <li><NavLink to='/dashboard/users'><FaUser></FaUser>Users</NavLink></li>
-                                <li><NavLink to='/dashboard/my/pets'><FaPaw></FaPaw>All Pets</NavLink></li>
-                                <li><NavLink to='/dashboard/adoptRequest'><FaDonate></FaDonate>All Donations </NavLink></li>
+                                <li><NavLink to='/dashboard/allPets'><FaPaw></FaPaw>All Pets</NavLink></li>
+                                <li><NavLink to='/dashboard/adoptReques'><FaDonate></FaDonate>All Donations </NavLink></li>
                             </>
                         }
 
