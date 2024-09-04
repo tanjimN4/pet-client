@@ -3,44 +3,39 @@ import { FaClipboardList, FaDonate, FaEnvelope, FaHeart, FaHome, FaPaw, FaPlusCi
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 
-
 const Dashboard = () => {
-    const [isAdmin] = useAdmin()
+    const [isAdmin] = useAdmin();
+
     return (
-        <div className="flex">
-            <div className="w-80 min-h-screen  bg-yellow-400 text-green-950">
-                <h1 className="text-3xl font-bold text-center mt-5">Adopt A Buddy</h1>
-                <div className="ml-5">
-                    <ul className="menu font-bold text-xl text-red-950">
-                        <li><NavLink to='/'><FaHome></FaHome>Home</NavLink></li>
-
-                        <li><NavLink to='/dashboard/add'><FaPaw></FaPaw>Add A Pet</NavLink></li>
-                        <li><NavLink to='/dashboard/my/pets'><FaPaw></FaPaw> My Added Pets</NavLink></li>
-                        <li><NavLink to='/dashboard/adoptRequest'><FaEnvelope></FaEnvelope>Adoption Request</NavLink></li>
-                        <li><NavLink to='/dashboard/createDonationCampaign'><FaPlusCircle></FaPlusCircle>Create Donation Campaign</NavLink></li>
-                        <li><NavLink to='/dashboard/myDonationCamping'><FaClipboardList></FaClipboardList>My Donation Campaigns</NavLink></li>
-                        <li><NavLink to='/dashboard/myDonation'><FaHeart></FaHeart>My Donations</NavLink></li>
+        <div className="flex flex-col md:flex-row">
+            <div className="bg-yellow-400 text-green-950 w-full md:w-80 min-h-screen md:min-h-full">
+                <h1 className="text-2xl md:text-3xl font-bold text-center mt-5">Adopt A Buddy</h1>
+                <div className="ml-4 md:ml-5 mt-4 md:mt-6">
+                    <ul className="menu font-bold text-lg md:text-xl text-red-950 space-y-2">
+                        <li><NavLink to='/' className="flex items-center"><FaHome className="mr-2"/>Home</NavLink></li>
+                        <li><NavLink to='/dashboard/add' className="flex items-center"><FaPaw className="mr-2"/>Add A Pet</NavLink></li>
+                        <li><NavLink to='/dashboard/my/pets' className="flex items-center"><FaPaw className="mr-2"/>My Added Pets</NavLink></li>
+                        <li><NavLink to='/dashboard/adoptRequest' className="flex items-center"><FaEnvelope className="mr-2"/>Adoption Request</NavLink></li>
+                        <li><NavLink to='/dashboard/createDonationCampaign' className="flex items-center"><FaPlusCircle className="mr-2"/>Create Donation Campaign</NavLink></li>
+                        <li><NavLink to='/dashboard/myDonationCamping' className="flex items-center"><FaClipboardList className="mr-2"/>My Donation Campaigns</NavLink></li>
+                        <li><NavLink to='/dashboard/myDonation' className="flex items-center"><FaHeart className="mr-2"/>My Donations</NavLink></li>
                         <br />
-                        <div className=" mr-5 rounded-xl divide bg-white h-2"></div>
+                        <div className="mr-5 rounded-xl divide bg-white h-2"></div>
                         <br />
-                        {
-                            isAdmin && <div className="text-center text-2xl">Admin</div>
-                        }
-                        {
-                            isAdmin && <>
-                                <li><NavLink to='/dashboard/users'><FaUser></FaUser>Users</NavLink></li>
-                                <li><NavLink to='/dashboard/allPets'><FaPaw></FaPaw>All Pets</NavLink></li>
-                                <li><NavLink to='/dashboard/adoptReques'><FaDonate></FaDonate>All Donations </NavLink></li>
+                        {isAdmin && <div className="text-center text-xl md:text-2xl mt-4">Admin</div>}
+                        {isAdmin && (
+                            <>
+                                <li><NavLink to='/dashboard/users' className="flex items-center"><FaUser className="mr-2"/>Users</NavLink></li>
+                                <li><NavLink to='/dashboard/allPet' className="flex items-center"><FaPaw className="mr-2"/>All Pets</NavLink></li>
+                                <li><NavLink to='/dashboard/alldonation' className="flex items-center"><FaDonate className="mr-2"/>All Donations</NavLink></li>
                             </>
-                        }
-
+                        )}
                     </ul>
                 </div>
             </div>
-            <div className="flex-1">
-                <Outlet></Outlet>
+            <div className="flex-1 bg-gray-100 p-4 md:p-8">
+                <Outlet />
             </div>
-
         </div>
     );
 };

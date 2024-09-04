@@ -6,6 +6,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import ChackOutFrom from "./ChackOutFrom";
 import { loadStripe } from "@stripe/stripe-js"
 import useDonation from "../../Hooks/useDonation";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gatway_Pk)
 
@@ -27,7 +29,13 @@ const ViewDetails = () => {
 
 
     if (!donation) {
-        return <div>Loading...</div>;
+        return (
+            <div className="fixed inset-0 bg-white bg-opacity-80 flex items-center justify-center">
+                <div className="w-64 h-32 p-4 bg-gray-200 rounded-lg shadow-md animate-pulse">
+                    <Skeleton className="w-full h-full bg-gray-300 rounded-lg" />
+                </div>
+            </div>
+        );
     }
 
     const { name, image, donatedAmount, maxDonation, description } = donation;

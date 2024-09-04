@@ -69,10 +69,13 @@ const ChackOutFrom = ({ donation }) => {
                     // console.log(res.data);
 
                 })
-            const donater_name = user.name;
+            const donater_name = user.displayName;
+            
             const donater_email = user.email;
+            const image=donation.image
+            const pet_name=donation.name
             const get_donater_email = donation.email
-            const data = { donater_name, donater_email, amount, get_donater_email }
+            const data = { donater_name, donater_email,pet_name,image, amount, get_donater_email }
             axiosPublic.post('/how/donated', data)
                 .then(res => {
                     console.log(res.data);

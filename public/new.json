@@ -5,7 +5,8 @@
     "pet_name": "Ember Tetra",
     "pet_age": "2 years",
     "pet_location": "New York, NY",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@nyfishadoption.com"
   },
   {
     "pet_code": "fish",
@@ -13,7 +14,8 @@
     "pet_name": "Dwarf Rainbow Fish",
     "pet_age": "1 year",
     "pet_location": "Los Angeles, CA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@lafishadoption.com"
   },
   {
     "pet_code": "fish",
@@ -21,7 +23,8 @@
     "pet_name": "Serpae Tetra",
     "pet_age": "6 months",
     "pet_location": "Chicago, IL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@chifishadoption.com"
   },
   {
     "pet_code": "fish",
@@ -29,7 +32,8 @@
     "pet_name": "Cherry Barb",
     "pet_age": "3 years",
     "pet_location": "Houston, TX",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@htxfishadoption.com"
   },
   {
     "pet_code": "fish",
@@ -37,7 +41,8 @@
     "pet_name": "Black Skirt Tetra",
     "pet_age": "4 years",
     "pet_location": "Miami, FL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@miafishadoption.com"
   },
   {
     "pet_code": "fish",
@@ -45,7 +50,8 @@
     "pet_name": "Neon Tetra",
     "pet_age": "8 months",
     "pet_location": "Seattle, WA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@seafishadoption.com"
   },
   {
     "pet_code": "fish",
@@ -53,7 +59,8 @@
     "pet_name": "Harlequin Rasbora",
     "pet_age": "5 years",
     "pet_location": "San Francisco, CA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@sffishadoption.com"
   },
   {
     "pet_code": "fish",
@@ -61,7 +68,8 @@
     "pet_name": "Half Moon Betta",
     "pet_age": "1.5 years",
     "pet_location": "Boston, MA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@bosfishadoption.com"
   },
   {
     "pet_code": "fish",
@@ -69,7 +77,8 @@
     "pet_name": "Black Molly",
     "pet_age": "3 months",
     "pet_location": "Orlando, FL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@orlfishadoption.com"
   },
   {
     "pet_code": "fish",
@@ -77,7 +86,8 @@
     "pet_name": "Cardinal Tetra",
     "pet_age": "2.5 years",
     "pet_location": "Denver, CO",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@denfishadoption.com"
   },
   {
     "pet_code": "dog",
@@ -85,7 +95,8 @@
     "pet_name": "Buddy",
     "pet_age": "3 years",
     "pet_location": "New York, NY",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@nydogadoption.com"
   },
   {
     "pet_code": "dog",
@@ -93,7 +104,8 @@
     "pet_name": "Bella",
     "pet_age": "2 years",
     "pet_location": "Los Angeles, CA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@ladogadoption.com"
   },
   {
     "pet_code": "dog",
@@ -101,7 +113,8 @@
     "pet_name": "Charlie",
     "pet_age": "4 years",
     "pet_location": "Chicago, IL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@chidogadoption.com"
   },
   {
     "pet_code": "dog",
@@ -109,7 +122,8 @@
     "pet_name": "Luna",
     "pet_age": "1.5 years",
     "pet_location": "Houston, TX",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@htxdogadoption.com"
   },
   {
     "pet_code": "dog",
@@ -117,7 +131,8 @@
     "pet_name": "Max",
     "pet_age": "5 years",
     "pet_location": "Miami, FL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@miadogadoption.com"
   },
   {
     "pet_code": "dog",
@@ -125,7 +140,8 @@
     "pet_name": "Daisy",
     "pet_age": "6 months",
     "pet_location": "Seattle, WA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@seadogadoption.com"
   },
   {
     "pet_code": "dog",
@@ -133,7 +149,8 @@
     "pet_name": "Rocky",
     "pet_age": "3.5 years",
     "pet_location": "San Francisco, CA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@sfdogadoption.com"
   },
   {
     "pet_code": "dog",
@@ -141,7 +158,8 @@
     "pet_name": "Molly",
     "pet_age": "2.5 years",
     "pet_location": "Boston, MA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@bosdogadoption.com"
   },
   {
     "pet_code": "dog",
@@ -149,7 +167,8 @@
     "pet_name": "Cooper",
     "pet_age": "1 year",
     "pet_location": "Orlando, FL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@orldogadoption.com"
   },
   {
     "pet_code": "dog",
@@ -157,7 +176,8 @@
     "pet_name": "Sadie",
     "pet_age": "4.5 years",
     "pet_location": "Denver, CO",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "contact@dendogadoption.com"
   },
   {
     "pet_code": "cat",
@@ -165,7 +185,8 @@
     "pet_name": "Whiskers",
     "pet_age": "2 years",
     "pet_location": "New York, NY",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "whiskers@example.com"
   },
   {
     "pet_code": "cat",
@@ -173,7 +194,8 @@
     "pet_name": "Luna",
     "pet_age": "3 years",
     "pet_location": "Los Angeles, CA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "luna@example.com"
   },
   {
     "pet_code": "cat",
@@ -181,7 +203,8 @@
     "pet_name": "Mittens",
     "pet_age": "1 year",
     "pet_location": "Chicago, IL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "mittens@example.com"
   },
   {
     "pet_code": "cat",
@@ -189,7 +212,8 @@
     "pet_name": "Shadow",
     "pet_age": "4 years",
     "pet_location": "Houston, TX",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "shadow@example.com"
   },
   {
     "pet_code": "cat",
@@ -197,7 +221,8 @@
     "pet_name": "Simba",
     "pet_age": "6 months",
     "pet_location": "Miami, FL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "simba@example.com"
   },
   {
     "pet_code": "cat",
@@ -205,7 +230,8 @@
     "pet_name": "Chloe",
     "pet_age": "5 years",
     "pet_location": "Seattle, WA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "chloe@example.com"
   },
   {
     "pet_code": "cat",
@@ -213,7 +239,8 @@
     "pet_name": "Bella",
     "pet_age": "2.5 years",
     "pet_location": "San Francisco, CA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "bella@example.com"
   },
   {
     "pet_code": "cat",
@@ -221,7 +248,8 @@
     "pet_name": "Oliver",
     "pet_age": "3 months",
     "pet_location": "Boston, MA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "oliver@example.com"
   },
   {
     "pet_code": "cat",
@@ -229,7 +257,8 @@
     "pet_name": "Tiger",
     "pet_age": "7 years",
     "pet_location": "Orlando, FL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "tiger@example.com"
   },
   {
     "pet_code": "cat",
@@ -237,7 +266,8 @@
     "pet_name": "Loki",
     "pet_age": "1.5 years",
     "pet_location": "Denver, CO",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "loki@example.com"
   },
   {
     "pet_code": "rabbit",
@@ -245,7 +275,8 @@
     "pet_name": "Thumper",
     "pet_age": "1 year",
     "pet_location": "New York, NY",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "thumper@example.com"
   },
   {
     "pet_code": "rabbit",
@@ -253,7 +284,8 @@
     "pet_name": "Coco",
     "pet_age": "2 years",
     "pet_location": "Los Angeles, CA",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "coco@example.com"
   },
   {
     "pet_code": "rabbit",
@@ -261,7 +293,8 @@
     "pet_name": "Oreo",
     "pet_age": "3 years",
     "pet_location": "Chicago, IL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "oreo@example.com"
   },
   {
     "pet_code": "rabbit",
@@ -269,7 +302,8 @@
     "pet_name": "BunBun",
     "pet_age": "8 months",
     "pet_location": "Houston, TX",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "bunbun@example.com"
   },
   {
     "pet_code": "rabbit",
@@ -277,6 +311,7 @@
     "pet_name": "Flopsy",
     "pet_age": "2.5 years",
     "pet_location": "Miami, FL",
-    "date_added": "2024-08-30"
+    "date_added": "2024-08-30",
+    "email": "flopsy@example.com"
   }
 ]

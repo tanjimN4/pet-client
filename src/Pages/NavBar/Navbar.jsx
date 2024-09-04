@@ -1,8 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import { themeChange } from 'theme-change';
 
 const Navbar = () => {
+    useEffect(() => {
+        themeChange(false)
+    }, []);
+    
     const { user,logOut,loading } = useContext(AuthContext)
     console.log(user);
 
@@ -16,14 +21,21 @@ const Navbar = () => {
     }
     
     const links = <>
+    <li><input 
+                        type="checkbox" 
+                        className="toggle toggle-primary" 
+                        data-toggle-theme="dark,light" 
+                        defaultChecked 
+                    /></li>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/petlisting'>Pet Listing</Link></li>
         <li><Link to='/donation'> Donation</Link></li>
         <li><Link>Campaigns</Link></li>
         {
-            user && <li><Link to='/dashboard'>DashBoard</Link></li>
+            user && <li><Link to='/dashboard/my/pets'>DashBoard</Link></li>
         }
     </>
+    
 
     return (
         <div>
@@ -50,6 +62,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
+                    
                     <a className="btn btn-ghost text-xl">Adopt A Buddy</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">

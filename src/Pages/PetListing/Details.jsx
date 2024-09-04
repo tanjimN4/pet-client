@@ -33,8 +33,9 @@ const Details = () => {
         const pet_name = pet.pet_name
         const pet_id = pet._id
         const pet_age = pet.pet_age
+        const pet_email=pet.email
         const adoptData = {
-            pet_image, pet_name, pet_id, pet_age, username: data.username, email: data.email, phone: data.phone, address: data.address
+            pet_image, pet_name,pet_email, pet_id, pet_age, username: data.username, email: data.email, phone: data.phone, address: data.address
         }
         axiosPublic.post('/adopt/pet', adoptData)
             .then(res => {
@@ -59,6 +60,7 @@ const Details = () => {
                 <figure>
                     <img
                         src={pet.pet_image}
+                        className='h-96'
                         alt="Movie" />
                 </figure>
                 <div className="card-body">

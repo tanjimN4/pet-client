@@ -18,6 +18,11 @@ import MyAddedPeats from "../Dashboard/Users/MyAddedPeats";
 
 import UpdatePet from "../Dashboard/Users/UpdatePet";
 import MydonationCampaing from "../Dashboard/Users/MydonationCampaing";
+import CreateDonationCamping from "../Dashboard/Users/CreateDonationCamping";
+import MyDonation from "../Dashboard/Users/MyDonation";
+import AdoptRequest from "../Dashboard/Users/AdoptRequest";
+import AllPet from "../Dashboard/Admin/AllPet";
+import AllDonation from "../Dashboard/Admin/AllDonation";
 
 export const router = createBrowserRouter([
     {
@@ -69,8 +74,20 @@ export const router = createBrowserRouter([
                 element:<Private><MyAddedPeats></MyAddedPeats></Private>
             },
             {
-                path:'adoptRequest',
+                path:'createDonationCampaign',
+                element:<CreateDonationCamping></CreateDonationCamping>
+            },
+            {
+                path:'myDonationCamping',
                 element:<MydonationCampaing></MydonationCampaing>
+            },
+            {
+                path:'myDonation',
+                element:<MyDonation></MyDonation>
+            },
+            {
+                path:'adoptRequest',
+                element:<AdoptRequest></AdoptRequest>
             },
             {
                 path:'update-pet/:id',
@@ -80,7 +97,15 @@ export const router = createBrowserRouter([
             {
                 path:'users',
                 element:<PrivateAdmin><Users></Users></PrivateAdmin>
-            }
+            },
+            {
+                path:'allpet',
+                element:<PrivateAdmin><AllPet></AllPet></PrivateAdmin>
+            },
+            {
+                path:'alldonation',
+                element:<PrivateAdmin><AllDonation></AllDonation></PrivateAdmin>
+            },
         ]
     }
 ]);
