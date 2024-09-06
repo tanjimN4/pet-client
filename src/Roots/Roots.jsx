@@ -23,6 +23,7 @@ import MyDonation from "../Dashboard/Users/MyDonation";
 import AdoptRequest from "../Dashboard/Users/AdoptRequest";
 import AllPet from "../Dashboard/Admin/AllPet";
 import AllDonation from "../Dashboard/Admin/AllDonation";
+import Edit from "../Dashboard/Users/Edit";
 
 export const router = createBrowserRouter([
     {
@@ -70,24 +71,28 @@ export const router = createBrowserRouter([
                 element:<Private><AddAPet></AddAPet></Private>
             },
             {
+                path:'edit/:id',
+                element:<Private><Edit></Edit></Private>
+            },
+            {
                 path:'my/pets',
                 element:<Private><MyAddedPeats></MyAddedPeats></Private>
             },
             {
                 path:'createDonationCampaign',
-                element:<CreateDonationCamping></CreateDonationCamping>
+                element:<Private><CreateDonationCamping></CreateDonationCamping></Private>
             },
             {
                 path:'myDonationCamping',
-                element:<MydonationCampaing></MydonationCampaing>
+                element:<Private><MydonationCampaing></MydonationCampaing></Private>
             },
             {
                 path:'myDonation',
-                element:<MyDonation></MyDonation>
+                element:<Private><MyDonation></MyDonation></Private>
             },
             {
                 path:'adoptRequest',
-                element:<AdoptRequest></AdoptRequest>
+                element:<Private><AdoptRequest></AdoptRequest></Private>
             },
             {
                 path:'update-pet/:id',

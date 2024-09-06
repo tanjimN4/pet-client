@@ -3,23 +3,27 @@ import useAxios from '../../Hooks/useAxios';
 import { AuthContext } from '../../Pages/provider/AuthProvider';
 import { data } from 'autoprefixer';
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AdoptRequest = () => {
+    const axiosSecure=useAxiosSecure()
     const axiosPublic=useAxios()
     const [items,setItem]=useState([])
     const {user}=useContext(AuthContext)
     const [filteardata,setFilterData]=useState([])
+    const [reload, setReload] = useState(false)
     useEffect(()=>{
         axiosPublic.get('/getAdoptPet')
         .then(res=>{
             setItem(res.data)
         })
-    },[])
+    },[reload])
     useEffect(()=>{
         const filter=items.filter(item=>item.pet_email===user.email)
         setFilterData(filter)
     },[items,user?.email])
-    console.log(filteardata);
+    // console.log(filteardata);
     
     const columnHelper = createColumnHelper()
 
@@ -41,6 +45,10 @@ const AdoptRequest = () => {
         columnHelper.accessor('phone', {
             cell: (info) => <span>{info.getValue()}</span>,
             header: 'Phone Number',
+        }),
+        columnHelper.accessor('adopted', {
+            cell: (info) => <span>{info.getValue() ? 'Adopted' : 'Not Adopted'}</span>,
+            header: 'Adoption Status',
         }),
         columnHelper.accessor('address', {
             cell: (info) => <span>{info.getValue()}</span>,
@@ -81,14 +89,43 @@ const AdoptRequest = () => {
     const handleCancel = (id) => {
         axiosPublic.delete(`/delete/adopt/${id}`)
         .then(res=>{
+            if(res.data.deletedCount >0){
+                Swal.fire({
+                    title: "Cancel",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
             
         })
         
     }
+    const handleAdoption = (id) => {
+        axiosSecure.patch(`/adopted/${id}`, { adopted: true })
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Success!",
+                        text: "This pet has been marked as adopted.",
+                        icon: "success"
+                    });
+                    setReload(!reload)
+                }
+            })
+            .catch(error => {
+                console.error("Error updating adoption status:", error);
+                Swal.fire({
+                    title: "Error!",
+                    text: "There was a problem updating the adoption status.",
+                    icon: "error"
+                });
+            });
+    }
+
     
     return (
         <div>
-            <table className="border border-gray-700 w-full text-left">
+            <table className="border text-white border-gray-700 w-full text-left">
                     <thead className=" bg-indigo-600">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>

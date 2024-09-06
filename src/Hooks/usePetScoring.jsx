@@ -1,7 +1,6 @@
 import {useQuery } from "@tanstack/react-query";
 import useAxios from "./useAxios";
-
-const usePet = () => {
+const usePetScoring = () => {
     const axiosPublic = useAxios();
 
     const { data: pets = [], isPending: loading, refetch } = useQuery({
@@ -14,8 +13,6 @@ const usePet = () => {
 
 
     return { pets, loading, refetch }
-
-    
 };
 
-export default usePet;
+export default usePetScoring;

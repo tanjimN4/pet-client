@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import usePet from '../../Hooks/usePet';
 import { Link } from 'react-router-dom';
+import usePetScoring from '../../Hooks/usePetScoring';
 
 const PetListing = () => {
-    const { pets } = usePet()
+    const { pets } = usePetScoring()
     const [search, setSearch] = useState('')
     const [category, setCategory] = useState('')
     

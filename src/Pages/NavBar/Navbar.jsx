@@ -1,41 +1,65 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
-import { themeChange } from 'theme-change';
 
 const Navbar = () => {
+    const [isDarkMode, setIsDarkMode] = useState(false)
+
+    const setDark=()=>{
+        document.querySelector('body').setAttribute('data-theme','dark')
+        localStorage.setItem('theme', 'dark')
+        setIsDarkMode(true)
+    }
+    const setLight=()=>{
+        document.querySelector('body').setAttribute('data-theme','light')
+        localStorage.setItem('theme', 'light')
+        setIsDarkMode(false)
+    }
+
+    const toggle=(e)=>{
+        if(e.target.checked)setDark()
+        else setLight()
+    }
+
     useEffect(() => {
-        themeChange(false)
-    }, []);
-    
-    const { user,logOut,loading } = useContext(AuthContext)
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'dark') {
+            setDark();
+        } else {
+            setLight();
+        }
+    }, [])
+
+
+    const { user, logOut, loading } = useContext(AuthContext)
     console.log(user);
 
-    const handleLogOut=()=>{
+    const handleLogOut = () => {
         logOut()
-        .then(() => {
+            .then(() => {
 
-        })
-        .catch(error => console.error(error)
-        )
+            })
+            .catch(error => console.error(error)
+            )
     }
-    
+
     const links = <>
-    <li><input 
-                        type="checkbox" 
-                        className="toggle toggle-primary" 
-                        data-toggle-theme="dark,light" 
-                        defaultChecked 
-                    /></li>
+        <li>
+        <input
+                    type="checkbox"
+                    className="toggle toggle-primary"
+                    onChange={toggle}
+                    checked={isDarkMode}
+                />
+        </li>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/petlisting'>Pet Listing</Link></li>
-        <li><Link to='/donation'> Donation</Link></li>
-        <li><Link>Campaigns</Link></li>
+        <li><Link to='/donation'> Donation Campaigns</Link></li>
         {
             user && <li><Link to='/dashboard/my/pets'>DashBoard</Link></li>
         }
     </>
-    
+
 
     return (
         <div>
@@ -62,7 +86,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    
+
                     <a className="btn btn-ghost text-xl">Adopt A Buddy</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">

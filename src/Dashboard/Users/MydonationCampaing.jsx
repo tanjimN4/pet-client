@@ -3,11 +3,13 @@ import useDonation from "../../Hooks/useDonation";
 import { AuthContext } from "../../Pages/provider/AuthProvider";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MydonationCampaing = () => {
-    const { donations } = useDonation()
+    const { donations,refetch} = useDonation()
     const { user } = useContext(AuthContext)
     const [data, setData] = useState([])
+    const axiosSecure=useAxiosSecure()
 
     useEffect(() => {
         const filtre = donations.filter(item => item.email === user.email)
@@ -16,6 +18,16 @@ const MydonationCampaing = () => {
     }, [donations, user.email])
 
     const columnHelper = createColumnHelper()
+
+    const handlePause = async (id, currentStatus) => {
+        const updatedStatus = { paused: !currentStatus };
+        const response = await axiosSecure.patch(`/donation/user/${id}`, updatedStatus);
+        console.log(response.data);
+        
+        if (response.data.modifiedCount >0) {
+           refetch?.()
+        }
+    }
 
     const columns = [
         columnHelper.accessor("", {
@@ -52,11 +64,21 @@ const MydonationCampaing = () => {
             },
             header: 'Donation Progress',
         }),
-        columnHelper.accessor("name", {
-            cell: (info) => <button>
-                push
-            </button>,
-            header: "push",
+        columnHelper.accessor("paused", {
+            cell: (info) => {
+                const isPaused = info.getValue();
+                const id = info.row.original._id;
+
+                return (
+                    <button
+                        onClick={() => handlePause(id, isPaused)}
+                        className={`btn ${isPaused ? 'btn-warning' : 'btn-success'}`}
+                    >
+                        {isPaused ? 'Unpause' : 'Pause'}
+                    </button>
+                );
+            },
+            header: "Pause/Unpause",
         }),
         columnHelper.accessor("_id", {
             cell: (info) => <Link
@@ -76,11 +98,15 @@ const MydonationCampaing = () => {
 
     ];
 
+
+
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
     })
+
+    
 
     return (
         <div>

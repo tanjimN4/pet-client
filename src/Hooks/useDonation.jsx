@@ -1,6 +1,6 @@
 
 import useAxios from "./useAxios";
-import { useInfiniteQuery, useQuery} from "@tanstack/react-query";
+import { useQuery} from "@tanstack/react-query";
 
 
 const useDonation = () => {
@@ -15,7 +15,7 @@ const useDonation = () => {
     })
 
 
-    return {donations, loading}
+    return {donations, loading,refetch}
 };
 
 export default useDonation;

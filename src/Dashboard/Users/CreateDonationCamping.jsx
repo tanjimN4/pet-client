@@ -118,7 +118,6 @@ const CreateDonationCamping = () => {
                             <input {...register("longDescription", { required: true })} className="input w-full input-bordered" />
                         </div>
                     </div>
-
                     <div className="flex justify-center">
                         <div className="form-control mt-6">
                             <button className="btn btn-primary w-full sm:w-auto">Create Campaign</button>

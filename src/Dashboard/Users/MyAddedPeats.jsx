@@ -7,20 +7,31 @@ import { useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 
 const MyAddedPeats = () => {
+    const axiosPublic = useAxios();
+
+    const { data: pets = [], isPending: loading, refetch } = useQuery({
+        queryKey: ['pets'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/pets');
+            return Array.isArray(res.data) ? res.data : []
+        }
+    })
     const navigate = useNavigate()
-    const { pets, refetch } = usePet()
+
     const axiosSecure = useAxiosSecure()
     const { user } = useContext(AuthContext)
     const [data, setData] = useState([])
 
     useEffect(() => {
-        const filtre = pets.filter(item => item.email === user.email)
-        // console.log(filtre);
-        setData(filtre)
-    }, [pets, user.email])
+        const filtre = pets.filter(item => item.email === user.email);
+        setData(filtre);
+    }, [pets, user.email]);
+    
 
 
 
@@ -144,6 +155,7 @@ const MyAddedPeats = () => {
                     setData(prevData => prevData.map(pet =>
                         pet._id === id ? { ...pet, adopted: true } : pet
                     ));
+                    refetch()
                 }
             })
             .catch(error => {
