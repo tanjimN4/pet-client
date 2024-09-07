@@ -26,16 +26,16 @@ const Pets = () => {
                         <Tab>Rabbits</Tab>
                     </TabList>
                     <TabPanel>
-                        <div className='grid grid-cols-3 gap-5 pt-10'>{dogs.map(item => <PetsCard key={item._id} item={item}></PetsCard>)}</div>
+                        <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 pt-10'>{dogs.map(item => <PetsCard key={item._id} item={item}></PetsCard>)}</div>
                     </TabPanel>
                     <TabPanel>
-                        <div className='grid grid-cols-3 gap-5 pt-10'>{cats.map(item => <PetsCard key={item._id} item={item}></PetsCard>)}</div>
+                        <div className='grid grid-cols-1 lg:grid-cols-33 gap-5 pt-10'>{cats.map(item => <PetsCard key={item._id} item={item}></PetsCard>)}</div>
                     </TabPanel>
                     <TabPanel>
-                        <div className='grid grid-cols-3 gap-5 pt-10'>{fish.map(item => <PetsCard key={item._id} item={item}></PetsCard>)}</div>
+                        <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 pt-10'>{fish.map(item => <PetsCard key={item._id} item={item}></PetsCard>)}</div>
                     </TabPanel>
                     <TabPanel>
-                        <div className='grid grid-cols-3 gap-5 pt-10'>{rabbits.map(item => <PetsCard key={item._id} item={item}></PetsCard>)}</div>
+                        <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 pt-10'>{rabbits.map(item => <PetsCard key={item._id} item={item}></PetsCard>)}</div>
                     </TabPanel>
                 </Tabs>
 

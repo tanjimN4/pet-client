@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div>
-            <footer className="footer footer-center bg-cyan-800 rounded-lg text-primary-content p-10">
+            <footer className="footer footer-center bg-cyan-800 mt-10 rounded-lg text-primary-content p-10">
                 <aside>
                     <h1 className='text-3xl font-extrabold'>Adopt A Buddy</h1>
                     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>

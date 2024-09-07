@@ -1,18 +1,19 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import usePet from "../../Hooks/usePet";
 import { AuthContext } from "../../Pages/provider/AuthProvider";
 import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
-import { USERS } from "./fakedata";
-import { useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 
-
-const MyAddedPeats = () => {
+const MyAddedPets = () => {
     const axiosPublic = useAxios();
+    const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
+    const { user } = useContext(AuthContext);
+    const [data, setData] = useState([]);
 
     const { data: pets = [], isPending: loading, refetch } = useQuery({
         queryKey: ['pets'],
@@ -20,22 +21,14 @@ const MyAddedPeats = () => {
             const res = await axiosPublic.get('/pets');
             return Array.isArray(res.data) ? res.data : []
         }
-    })
-    const navigate = useNavigate()
-
-    const axiosSecure = useAxiosSecure()
-    const { user } = useContext(AuthContext)
-    const [data, setData] = useState([])
+    });
 
     useEffect(() => {
-        const filtre = pets.filter(item => item.email === user.email);
-        setData(filtre);
+        const filteredPets = pets.filter(item => item.email === user.email);
+        setData(filteredPets);
     }, [pets, user.email]);
-    
 
-
-
-    const columnHelper = createColumnHelper()
+    const columnHelper = createColumnHelper();
 
     const columns = [
         columnHelper.accessor("", {
@@ -46,17 +39,17 @@ const MyAddedPeats = () => {
         columnHelper.accessor("pet_image", {
             cell: (info) => (
                 <img src={info?.getValue()} alt="" className="rounded-full w-10 h-10 object-cover" />
-            )
+            ),
+            header: "Image",
         }),
         columnHelper.accessor("pet_name", {
             cell: (info) => <span>{info.getValue()}</span>,
-            header: "Pet name",
+            header: "Pet Name",
         }),
         columnHelper.accessor("pet_code", {
             cell: (info) => <span>{info.getValue()}</span>,
-            header: "Pet category",
+            header: "Pet Category",
         }),
-
         columnHelper.accessor('adopted', {
             cell: (info) => <span>{info.getValue() ? 'Adopted' : 'Not Adopted'}</span>,
             header: 'Adoption Status',
@@ -73,45 +66,34 @@ const MyAddedPeats = () => {
                     </Link>
                     <button
                         onClick={() => handleDelete(info.getValue())}
-                        className=" btn btn-primary"
+                        className="btn btn-primary"
                     >
                         Delete
                     </button>
                 </div>
             ),
-            header: () => (
-                <div className="flex gap-10">
-                    <div className="">Update</div>
-                    <div className=""> Delete</div>
-                </div>
-            ),
+            header: "Actions",
         }),
         columnHelper.accessor('_id', {
             id: 'actions2',
             cell: (info) => (
-                <div className="flex gap-2">
-                    <button
-                        onClick={() => handleAdoption(info.getValue())}
-                        className=" btn btn-primary"
-                    >
-                        Adopted
-                    </button>
-                </div>
+                <button
+                    onClick={() => handleAdoption(info.getValue())}
+                    className="btn btn-primary"
+                >
+                    Mark as Adopted
+                </button>
             ),
-            header: () => (
-                <div className="Adopted"></div>
-            ),
+            header: "Mark Adopted",
         }),
-
     ];
-
 
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel()
-    })
+    });
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -134,15 +116,11 @@ const MyAddedPeats = () => {
                             });
                             setData(prevData => prevData.filter(pet => pet._id !== id))
                         }
-                    }
-
-                    )
-
+                    })
             }
         });
-
-
     };
+
     const handleAdoption = (id) => {
         axiosSecure.patch(`/petAdopted/${id}`, { adopted: true })
             .then(res => {
@@ -155,7 +133,7 @@ const MyAddedPeats = () => {
                     setData(prevData => prevData.map(pet =>
                         pet._id === id ? { ...pet, adopted: true } : pet
                     ));
-                    refetch()
+                    refetch();
                 }
             })
             .catch(error => {
@@ -166,20 +144,18 @@ const MyAddedPeats = () => {
                     icon: "error"
                 });
             });
-    }
+    };
 
     return (
-        <div>
-            <div className="">
-                <h1 className="text-3xl font-extrabold text-center my-10">My Added Pets</h1>
-            </div>
-            <div className="m-5 text-white fill-gray-400 ">
-                <table className="border border-gray-700 w-full text-left">
-                    <thead className=" bg-indigo-600">
+        <div className="container mx-auto px-4">
+            <h1 className="text-3xl font-extrabold text-center my-10">My Added Pets</h1>
+            <div className="overflow-x-auto">
+                <table className="min-w-full border border-gray-700 text-left">
+                    <thead className="bg-indigo-600">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (
-                                    <th key={header.id} className="capitalize px-3.5 py-2">
+                                    <th key={header.id} className="px-3.5 py-2 capitalize">
                                         {flexRender(
                                             header.column.columnDef.header,
                                             header.getContext()
@@ -204,36 +180,33 @@ const MyAddedPeats = () => {
                         ))}
                     </tbody>
                 </table>
-                {
-                    table.getPageCount() > 1 &&
-                    <div className="flex items-center justify-end mt-2 gap-2">
-                        {/* pagination */}
+            </div>
+            {
+                table.getPageCount() > 1 &&
+                <div className="flex flex-col md:flex-row items-center justify-end mt-2 gap-2">
+                    <div className="flex items-center gap-1">
                         <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()} className="p-1 border border-gray-300 px-2 disabled:opacity-30">{'<'}</button>
                         <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()} className="p-1 border border-gray-300 px-2 disabled:opacity-30">{'>'}</button>
-                        <span className="flex items-center gap-1">
-                            <div>Page</div>
-                            <strong>
-                                {table.getState().pagination.pageIndex + 1} of{' '}
-                                {table.getPageCount().toLocaleString()}
-                            </strong>
-                        </span>
-                        <span className="flex items-center gap-1">
-                            | Go to page
-                            <input type="number" defaultValue={table.getState().pagination.pageIndex + 1}
-                                className="border p-1 rounded  bg-transparent"
-                                onChange={(e) => {
-                                    const page = e.target.value ? Number(e.target.value) - 1 : 0
-                                    table.setPageIndex(page)
-                                }}
-                            >
-
-                            </input>
+                        <span>
+                            Page <strong>{table.getState().pagination.pageIndex + 1}</strong> of {table.getPageCount().toLocaleString()}
                         </span>
                     </div>
-                }
-            </div>
+                    <div className="flex items-center gap-1">
+                        | Go to page
+                        <input
+                            type="number"
+                            defaultValue={table.getState().pagination.pageIndex + 1}
+                            className="border p-1 rounded bg-transparent"
+                            onChange={(e) => {
+                                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                                table.setPageIndex(page);
+                            }}
+                        />
+                    </div>
+                </div>
+            }
         </div>
     );
 };
 
-export default MyAddedPeats;
+export default MyAddedPets;

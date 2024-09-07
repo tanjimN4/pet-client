@@ -6,16 +6,15 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
 const AllPet = () => {
-    const {pets,refetch}=usePet()
-    const axiosSecure=useAxiosSecure()
-    const [data,setData]=useState([])
+    const { pets, refetch } = usePet();
+    const axiosSecure = useAxiosSecure();
+    const [data, setData] = useState([]);
+
     useEffect(() => {
         setData(pets);
-    }, [pets])
-    
+    }, [pets]);
 
-     
-    const columnHelper = createColumnHelper()
+    const columnHelper = createColumnHelper();
 
     const columns = [
         columnHelper.accessor("", {
@@ -25,7 +24,7 @@ const AllPet = () => {
         }),
         columnHelper.accessor("pet_name", {
             cell: (info) => <span>{info.getValue()}</span>,
-            header: "Pet_Name",
+            header: "Pet Name",
         }),
         columnHelper.accessor("email", {
             cell: (info) => <span>{info.getValue()}</span>,
@@ -33,7 +32,7 @@ const AllPet = () => {
         }),
         columnHelper.accessor('pet_code', {
             cell: (info) => <span>{info.getValue()}</span>,
-            header: 'category',
+            header: 'Category',
         }),
         columnHelper.accessor('adopted', {
             id: 'status',
@@ -45,12 +44,12 @@ const AllPet = () => {
             header: 'Status',
         }),
         columnHelper.accessor('_id', {
-            id: 'actions2',
+            id: 'actions',
             cell: (info) => (
-                <div className="flex gap-2">
+                <div className="flex flex-col md:flex-row gap-2">
                     <button
                         onClick={() => handleDelete(info.getValue())}
-                        className=" btn btn-success"
+                        className="btn btn-success"
                     >
                         Delete
                     </button>
@@ -68,43 +67,33 @@ const AllPet = () => {
                     </button>
                 </div>
             ),
-            header: () => (
-                <div className='flex gap-10'>
-                    <div className="Delete">Delete</div>
-                    <div className="Delete">Update</div>
-                    <div className="Adoption">Adopted Status</div>
-                </div>
-            ),
+            header: "Actions",
         }),
-
     ];
-
 
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel()
-    })
+        getPaginationRowModel: getPaginationRowModel(),
+    });
 
-    const handleDelete=(id)=>{
-    axiosSecure.delete(`/delete/pets/${id}`)
-    .then(res=>{
-        if(res.data.deletedCount>0){
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "delete",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              refetch()
+    const handleDelete = (id) => {
+        axiosSecure.delete(`/delete/pets/${id}`)
+            .then(res => {
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Deleted successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            });
+    };
 
-        }
-        
-    })
-        
-    }
     const toggleAdoptionStatus = (id, currentStatus) => {
         axiosSecure.patch(`/pets/${id}`, { adopted: !currentStatus })
             .then(res => {
@@ -120,16 +109,16 @@ const AllPet = () => {
                 }
             });
     };
-    
 
     return (
-        <div>
-            <table className="border border-gray-700 w-full text-left">
-                    <thead className=" bg-indigo-600">
+        <div className="p-4">
+            <div className="overflow-x-auto">
+                <table className="min-w-full border border-gray-700 text-left">
+                    <thead className="bg-indigo-600">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (
-                                    <th key={header.id} className="capitalize px-3.5 py-2">
+                                    <th key={header.id} className="capitalize px-2 md:px-4 py-2 text-sm md:text-base">
                                         {flexRender(
                                             header.column.columnDef.header,
                                             header.getContext()
@@ -143,7 +132,7 @@ const AllPet = () => {
                         {table.getRowModel().rows.map((row, index) => (
                             <tr key={row.id} className={`${index % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800'}`}>
                                 {row.getVisibleCells().map((cell) => (
-                                    <td key={cell.id} className="px-3.5 py-2">
+                                    <td key={cell.id} className="px-2 md:px-4 py-2 text-sm md:text-base">
                                         {flexRender(
                                             cell.column.columnDef.cell,
                                             cell.getContext()
@@ -154,33 +143,45 @@ const AllPet = () => {
                         ))}
                     </tbody>
                 </table>
-                {
-                    table.getPageCount() > 1 &&
-                    <div className="flex items-center justify-end mt-2 gap-2">
-                        {/* pagination */}
-                        <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()} className="p-1 border border-gray-300 px-2 disabled:opacity-30">{'<'}</button>
-                        <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()} className="p-1 border border-gray-300 px-2 disabled:opacity-30">{'>'}</button>
-                        <span className="flex items-center gap-1">
-                            <div>Page</div>
-                            <strong>
-                                {table.getState().pagination.pageIndex + 1} of{' '}
-                                {table.getPageCount().toLocaleString()}
-                            </strong>
-                        </span>
-                        <span className="flex items-center gap-1">
-                            | Go to page
-                            <input type="number" defaultValue={table.getState().pagination.pageIndex + 1}
-                                className="border p-1 rounded  bg-transparent"
-                                onChange={(e) => {
-                                    const page = e.target.value ? Number(e.target.value) - 1 : 0
-                                    table.setPageIndex(page)
-                                }}
-                            >
-
-                            </input>
-                        </span>
+            </div>
+            {table.getPageCount() > 1 && (
+                <div className="flex flex-col md:flex-row items-center justify-between mt-4 gap-2">
+                    <div className="flex gap-2">
+                        <button
+                            onClick={() => table.previousPage()}
+                            disabled={!table.getCanPreviousPage()}
+                            className="p-1 border border-gray-300 px-2 disabled:opacity-30"
+                        >
+                            {'<'}
+                        </button>
+                        <button
+                            onClick={() => table.nextPage()}
+                            disabled={!table.getCanNextPage()}
+                            className="p-1 border border-gray-300 px-2 disabled:opacity-30"
+                        >
+                            {'>'}
+                        </button>
                     </div>
-                }
+                    <div className="flex items-center gap-2">
+                        <span className="text-sm">Page</span>
+                        <strong className="text-sm">
+                            {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                        </strong>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <span className="text-sm">Go to page</span>
+                        <input
+                            type="number"
+                            defaultValue={table.getState().pagination.pageIndex + 1}
+                            className="border p-1 rounded bg-transparent w-16"
+                            onChange={(e) => {
+                                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                                table.setPageIndex(page);
+                            }}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

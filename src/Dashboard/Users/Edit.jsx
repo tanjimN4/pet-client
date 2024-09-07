@@ -69,7 +69,7 @@ const Edit = () => {
     }
     return (
         <div className="bg-gray-700 text-white h-full rounded-lg">
-            <div className="text-3xl text-center font-extrabold">Update Donation Campaign</div>
+            <div className="text-3xl text-center font-extrabold">Update Your Donation Campaign</div>
             <div>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="flex flex-col md:flex-row md:justify-center">

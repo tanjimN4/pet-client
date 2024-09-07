@@ -7,7 +7,7 @@ const PetListing = () => {
     const { pets } = usePetScoring()
     const [search, setSearch] = useState('')
     const [category, setCategory] = useState('')
-    
+
 
     //filter for search
     const filterdata = pets.filter(pet =>
@@ -17,7 +17,7 @@ const PetListing = () => {
     return (
         <div>
             <div className='mt-10 mb-10'>
-                <form className="flex items-center max-w-sm mx-auto">
+                <form className="float-none lg:flex items-center max-w-sm mx-auto">
                     <label htmlFor="simple-search" className="sr-only">Search</label>
                     <div className="relative w-full">
                         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -59,31 +59,33 @@ const PetListing = () => {
                     </button>
                 </form>
             </div>
-            <div className='grid grid-cols-3 gap-5'>
-                {
-                    filterdata.map(pet =>
-                        <div key={pet._id} className="">
-                            <div className="card bg-base-100 w-96 shadow-xl border-2">
-                                <figure className="px-10 pt-10">
-                                    <img
-                                        src={pet.pet_image}
-                                        alt="Shoes"
-                                        className="rounded-xl h-80" />
-                                </figure>
-                                <div className="card-body items-center text-center">
-                                    <h2 className="card-title">Name : {pet.pet_name}</h2>
-                                    <p>Age : {pet.pet_age}</p>
-                                    <p>Location : {pet.pet_location}</p>
-                                </div>
-                                <div className='flex justify-center mb-6'>
-                                    <Link to={`/details/${pet._id}`}><button className="bg-yellow-500 text-black px-6 py-3 w-40 rounded-full font-semibold hover:bg-yellow-600 transition">
-                                        Details
-                                    </button></Link>
+            <div className='flex justify-center'>
+                <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+                    {
+                        filterdata.map(pet =>
+                            <div key={pet._id} className="">
+                                <div className="card bg-base-100 w-96 shadow-xl border-2">
+                                    <figure className="px-10 pt-10">
+                                        <img
+                                            src={pet.pet_image}
+                                            alt="Shoes"
+                                            className="rounded-xl h-80" />
+                                    </figure>
+                                    <div className="card-body items-center text-center">
+                                        <h2 className="card-title">Name : {pet.pet_name}</h2>
+                                        <p>Age : {pet.pet_age}</p>
+                                        <p>Location : {pet.pet_location}</p>
+                                    </div>
+                                    <div className='flex justify-center mb-6'>
+                                        <Link to={`/details/${pet._id}`}><button className="bg-yellow-500 text-black px-6 py-3 w-40 rounded-full font-semibold hover:bg-yellow-600 transition">
+                                            Details
+                                        </button></Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                }
+                        )
+                    }
+                </div>
             </div>
         </div>
     );

@@ -1,31 +1,31 @@
 import React, { useContext, useEffect, useState } from 'react';
 import useAxios from '../../Hooks/useAxios';
 import { AuthContext } from '../../Pages/provider/AuthProvider';
-import { data } from 'autoprefixer';
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AdoptRequest = () => {
-    const axiosSecure=useAxiosSecure()
-    const axiosPublic=useAxios()
-    const [items,setItem]=useState([])
-    const {user}=useContext(AuthContext)
-    const [filteardata,setFilterData]=useState([])
-    const [reload, setReload] = useState(false)
-    useEffect(()=>{
+    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxios();
+    const [items, setItem] = useState([]);
+    const { user } = useContext(AuthContext);
+    const [filteredData, setFilterData] = useState([]);
+    const [reload, setReload] = useState(false);
+
+    useEffect(() => {
         axiosPublic.get('/getAdoptPet')
-        .then(res=>{
-            setItem(res.data)
-        })
-    },[reload])
-    useEffect(()=>{
-        const filter=items.filter(item=>item.pet_email===user.email)
-        setFilterData(filter)
-    },[items,user?.email])
-    // console.log(filteardata);
-    
-    const columnHelper = createColumnHelper()
+            .then(res => {
+                setItem(res.data);
+            });
+    }, [reload]);
+
+    useEffect(() => {
+        const filter = items.filter(item => item.pet_email === user.email);
+        setFilterData(filter);
+    }, [items, user?.email]);
+
+    const columnHelper = createColumnHelper();
 
     const columns = [
         columnHelper.accessor("", {
@@ -41,7 +41,6 @@ const AdoptRequest = () => {
             cell: (info) => <span>{info.getValue()}</span>,
             header: "Email",
         }),
-
         columnHelper.accessor('phone', {
             cell: (info) => <span>{info.getValue()}</span>,
             header: 'Phone Number',
@@ -60,46 +59,42 @@ const AdoptRequest = () => {
                 <div className="flex gap-2">
                     <button
                         onClick={() => handleCancel(info.getValue())}
-                        className=" btn btn-success"
+                        className="btn btn-success"
                     >
-                        cancel
+                        Cancel
                     </button>
                     <button
                         onClick={() => handleAdoption(info.getValue())}
-                        className=" btn btn-primary"
+                        className="btn btn-primary"
                     >
-                        Accepted
+                        Accept
                     </button>
                 </div>
             ),
-            header: () => (
-                <div className="Adopted"></div>
-            ),
+            header: () => <div>Actions</div>,
         }),
-
     ];
 
-
     const table = useReactTable({
-        data:filteardata,
+        data: filteredData,
         columns,
         getCoreRowModel: getCoreRowModel(),
-    })
+    });
 
     const handleCancel = (id) => {
         axiosPublic.delete(`/delete/adopt/${id}`)
-        .then(res=>{
-            if(res.data.deletedCount >0){
-                Swal.fire({
-                    title: "Cancel",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-            }
-            
-        })
-        
-    }
+            .then(res => {
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Cancelled",
+                        text: "The adoption request has been cancelled.",
+                        icon: "success"
+                    });
+                    setReload(!reload);
+                }
+            });
+    };
+
     const handleAdoption = (id) => {
         axiosSecure.patch(`/adopted/${id}`, { adopted: true })
             .then(res => {
@@ -109,52 +104,50 @@ const AdoptRequest = () => {
                         text: "This pet has been marked as adopted.",
                         icon: "success"
                     });
-                    setReload(!reload)
+                    setReload(!reload);
                 }
             })
             .catch(error => {
-                console.error("Error updating adoption status:", error);
                 Swal.fire({
                     title: "Error!",
                     text: "There was a problem updating the adoption status.",
                     icon: "error"
                 });
             });
-    }
+    };
 
-    
     return (
-        <div>
-            <table className="border text-white border-gray-700 w-full text-left">
-                    <thead className=" bg-indigo-600">
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => (
-                                    <th key={header.id} className="capitalize px-3.5 py-2">
-                                        {flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
-                                        )}
-                                    </th>
-                                ))}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody>
-                        {table.getRowModel().rows.map((row, index) => (
-                            <tr key={row.id} className={`${index % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800'}`}>
-                                {row.getVisibleCells().map((cell) => (
-                                    <td key={cell.id} className="px-3.5 py-2">
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext()
-                                        )}
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+        <div className="overflow-x-auto">
+            <table className="table-auto w-full text-white text-left border-collapse">
+                <thead className="bg-indigo-600">
+                    {table.getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <th key={header.id} className="px-4 py-2 text-sm md:text-base">
+                                    {flexRender(
+                                        header.column.columnDef.header,
+                                        header.getContext()
+                                    )}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody>
+                    {table.getRowModel().rows.map((row, index) => (
+                        <tr key={row.id} className={`${index % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800'} border-b border-gray-700`}>
+                            {row.getVisibleCells().map((cell) => (
+                                <td key={cell.id} className="px-4 py-2 text-sm md:text-base">
+                                    {flexRender(
+                                        cell.column.columnDef.cell,
+                                        cell.getContext()
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };

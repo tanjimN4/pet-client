@@ -14,6 +14,9 @@ const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gatway_Pk)
 const ViewDetails = () => {
     const [donation, setDonation] = useState();
     const { donations } = useDonation();
+    console.log(donations);
+    // const [push] = useState(true)
+    
 
     const { id } = useParams();
     const axiosPublic = useAxios();
@@ -25,7 +28,7 @@ const ViewDetails = () => {
     }, [id, axiosPublic]);
 
     const racomand = donations.filter(item => item.campaign_type === 'recommended')
-    console.log(racomand);
+    // console.log(racomand);
 
 
     if (!donation) {
@@ -38,7 +41,7 @@ const ViewDetails = () => {
         );
     }
 
-    const { name, image, donatedAmount, maxDonation, description } = donation;
+    const { name, image, donatedAmount, maxDonation, description,paused    } = donation;
 
     return (
         <div>
@@ -57,7 +60,7 @@ const ViewDetails = () => {
                         <p>Description: {description}</p>
                         <div className="card-actions justify-end">
                             {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                            <button className="btn btn-primary" onClick={() => document.getElementById('my_modal_3').showModal()}>Donated Now</button>
+                            <button className="btn btn-primary" disabled={paused} onClick={() => document.getElementById('my_modal_3').showModal()}>Donated Now</button>
                             <dialog id="my_modal_3" className="modal">
                                 <div className="modal-box">
                                     <form method="dialog">

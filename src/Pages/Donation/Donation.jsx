@@ -10,7 +10,8 @@ const Donation = () => {
             <div>
                 <h1 className="text-center text-4xl font-extrabold">Donation Campaigns</h1>
             </div>
-            <div className="grid grid-cols-3 my-10 gap-4">
+           <div className="flex justify-center">
+           <div className="grid grid-cols-1 lg:grid-cols-3 my-10 gap-4">
                 {donations.map(donation => (
                     <div key={donation._id} className="card bg-base-100 w-96 shadow-xl">
                         <figure className="px-10 pt-10">
@@ -39,6 +40,7 @@ const Donation = () => {
                     </div>
                 ))}
             </div>
+           </div>
         </div>
     );
 };

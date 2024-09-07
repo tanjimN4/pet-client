@@ -2,10 +2,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxios from "../../Hooks/useAxios";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const ChackOutFrom = ({ donation }) => {
     const { user } = useContext(AuthContext)
-    console.log(donation);
+    // console.log(donation);
 
 
     const stripe = useStripe()
@@ -40,11 +41,11 @@ const ChackOutFrom = ({ donation }) => {
             type: 'card', card
         })
         if (error) {
-            console.log('payment error', error);
+            // console.log('payment error', error);
 
         }
         if (paymentMethod) {
-            console.log('payment error', paymentMethod);
+            // console.log('payment error', paymentMethod);
 
         }
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
@@ -57,10 +58,10 @@ const ChackOutFrom = ({ donation }) => {
             }
         })
         if (confirmError) {
-            console.log('confirm error');
+            // console.log('confirm error');
 
         } else {
-            console.log('payment intent', paymentIntent);
+            // console.log('payment intent', paymentIntent);
 
         }
         if (paymentIntent && paymentIntent.status === 'succeeded') {
@@ -78,7 +79,17 @@ const ChackOutFrom = ({ donation }) => {
             const data = { donater_name, donater_email,pet_name,image, amount, get_donater_email }
             axiosPublic.post('/how/donated', data)
                 .then(res => {
-                    console.log(res.data);
+                    if(res.status===200){
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your work has been saved",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                    
+                    
 
                 })
         }

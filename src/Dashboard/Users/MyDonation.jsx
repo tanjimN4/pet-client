@@ -3,6 +3,7 @@ import useDonation from '../../Hooks/useDonation';
 import useAxios from '../../Hooks/useAxios';
 import { AuthContext } from '../../Pages/provider/AuthProvider';
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import Swal from 'sweetalert2';
 
 const MyDonation = () => {
     const [data, setData] = useState()
@@ -25,7 +26,33 @@ const MyDonation = () => {
             setFilteredData(filtered);
         }
     }, [data, user.email])
-    console.log(filteredData);
+    // console.log(filteredData);
+
+    const handleRefund = (id) => {
+        axiosPublic.delete(`/donater/refund/${id}`)
+            .then(res => {
+                if (res.status === 200) {
+                    setFilteredData(prevData => prevData.filter(item => item._id !== id));
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Failed to process refund", error);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Error",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+    };
 
     const columnHelper = createColumnHelper()
 
@@ -46,7 +73,8 @@ const MyDonation = () => {
             header: "Amount",
         }),
         columnHelper.accessor("_id", {
-            cell: (info) => <button className='btn btn-primary'>
+            cell: (info) => <button className='btn btn-primary'
+            onClick={() => handleRefund(info.getValue())}>
                 Refund
             </button>,
             header: "Refund",

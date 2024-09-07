@@ -39,7 +39,7 @@ const SuccessStories = () => {
     return (
         <div>
             <div className='text-center my-10'>
-                <h1 className='text-5xl font-extrabold'>SUCCESS STORIES</h1>
+                <h1 className='text-3xl lg:text-5xl font-extrabold'>SUCCESS STORIES</h1>
                 <p className='my-2'>Share a photo and tell us what role animals play in your life.</p>
             </div>
             <div className='flex justify-center items-center'>

@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 const CallToAction = () => {
   return (
-    <section className="relative bg-cover bg-center h-screen" style={{ backgroundImage: "url('/images/happy-pet.jpg')" }}>
+    <section className="relative bg-cover bg-center pt-10 mb-20" style={{ backgroundImage: "url('/images/happy-pet.jpg')" }}>
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full">
         {/* Headline */}
-        <h1 className="text-5xl font-bold mb-4">Give Them a Forever Home</h1>
+        <h1 className="text-5xl font-bold mb-4 mt-10">Give Them a Forever Home</h1>
 
         {/* Subheadline */}
         <p className="text-xl mb-8">Every pet deserves a loving family. Adopt today and make a difference.</p>
@@ -37,7 +37,7 @@ const CallToAction = () => {
             <img src="https://i.ibb.co/6yg7FRW/MV5-BN2-Rl-Nz-Bh-NDkt-Ym-Jh-NC00-YTEz-LTg0-Nm-Ut-YWNl-Njk2-YTZm-NTMw-Xk-Ey-Xk-Fqc-Gde-QXVy-ODk4-NTI4.jpg" alt="" className="w-full h-48 object-cover"/>
             <p className="text-sm mt-2">A New Beginning</p>
           </div>
-          <div className="rounded-lg overflow-hidden">
+          <div className="rounded-lg overflow-hidden mb-10">
             <img src="https://i.ibb.co/5c1FRQz/777-charlie-1654847954789-1654856251124.jpg" alt="" className="w-full h-48 object-cover"/>
             <p className="text-sm mt-2">A Happy Ending</p>
           </div>
